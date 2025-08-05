@@ -17,3 +17,32 @@ public:
         return -1;  // Should never reach here if input is valid
     }
 };
+
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int sum = n * (n + 1) / 2;  // Use n, not n+1
+        int s2 = 0;
+
+        for (int t = 0; t < n; t++) {
+            s2 += nums[t];  // Use += instead of =+
+        }
+
+        return sum - s2;
+    }
+}
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int xor = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            xor ^= i ^ nums[i];
+        }
+
+        xor ^= n;  // Final XOR with 'n' as the last index is not included in loop
+        return xor;
+    }
+}
